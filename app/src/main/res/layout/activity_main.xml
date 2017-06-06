@@ -1,24 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="false"
-    android:paddingBottom="16dp"
-    android:paddingLeft="64dp"
-    android:paddingRight="64dp"
-    android:paddingTop="16dp"
     android:background="@drawable/catanmain"
-    tools:context=".MainActivity">
+    tools:context="com.example.johnjo8.catanapp.MainActivity">
 
-    <RadioGroup
+    <Button
+        android:id="@+id/launchBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/radioGroup3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/Cities"
-        android:layout_alignEnd="@+id/Cities">
+        android:layout_above="@+id/launchCities"
+        android:layout_marginRight="6dp"
+        android:layout_alignParentRight="true"
+        android:onClick="launchBase"
+        android:text="Base" />
 
+    <Button
+        android:id="@+id/launchCities"
+        android:text="Cities and Knights"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
+        android:layout_above="@+id/radioGroup"
+        android:layout_alignParentRight="true"
+        android:onClick="launchCities"
+        />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        >
         <RadioButton
             android:id="@+id/twoP"
             android:layout_width="wrap_content"
@@ -27,8 +45,8 @@
             android:buttonTint="#D6D7D7"
             android:onClick="onRadioButtonClicked"
             android:text="2"
-            android:textColor="#D6D7D7" />
-
+            android:textColor="#D6D7D7"
+            />
         <RadioButton
             android:id="@+id/threeP"
             android:layout_width="wrap_content"
@@ -37,8 +55,8 @@
             android:buttonTint="#D6D7D7"
             android:onClick="onRadioButtonClicked"
             android:text="3"
-            android:textColor="#D6D7D7" />
-
+            android:textColor="#D6D7D7"
+            />
         <RadioButton
             android:id="@+id/fourP"
             android:layout_width="wrap_content"
@@ -47,8 +65,8 @@
             android:buttonTint="#D6D7D7"
             android:onClick="onRadioButtonClicked"
             android:text="4"
-            android:textColor="#D6D7D7" />
-
+            android:textColor="#D6D7D7"
+            />
         <RadioButton
             android:id="@+id/fiveP"
             android:layout_width="wrap_content"
@@ -57,8 +75,8 @@
             android:buttonTint="#D6D7D7"
             android:onClick="onRadioButtonClicked"
             android:text="5"
-            android:textColor="#D6D7D7" />
-
+            android:textColor="#D6D7D7"
+            />
         <RadioButton
             android:id="@+id/sixP"
             android:layout_width="wrap_content"
@@ -67,48 +85,9 @@
             android:buttonTint="#D6D7D7"
             android:onClick="onRadioButtonClicked"
             android:text="6"
-            android:textColor="#D6D7D7" />
+            android:textColor="#D6D7D7"
+            />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/Base"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="swapToBase"
-        android:text="Base Game"
-        android:layout_above="@+id/Cities"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/Cities"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="swapToCities"
-        android:text="Cities and Knights"
-        android:layout_above="@+id/radioGroup3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
-
-
-
-
-
-
-
-
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context="com.example.johnjo8.catanapp.MainActivity">-->
-
-
-<!--</RelativeLayout>-->
