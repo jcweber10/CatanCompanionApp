@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((RadioButton) findViewById(R.id.twoP)).setChecked(true);
+        GameModel model = new GameModel();
         GameModel.setNumPlayers(2);
 
     }
