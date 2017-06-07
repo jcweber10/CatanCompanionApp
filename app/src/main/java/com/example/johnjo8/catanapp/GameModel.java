@@ -42,6 +42,10 @@ public class GameModel {
         return numPlayers;
     }
 
+    public static int getNumRound(){
+        return numRound;
+    }
+
     public static int[] getNumStats(){
         return numStats;
     }
@@ -113,12 +117,13 @@ public class GameModel {
                     turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal + " with a " + event + redDie;
                 }
         }
+        numStats[rollTotal-2]++;
         turnStringList.add(turnString);
         numRolls++;
         if (numRolls % numPlayers == 0) {
             numRound++;
         }
-
+    populateStats();
     }
 
 }

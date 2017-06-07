@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Handler;
 
 /**
  * Created by johnjo8 on 6/6/2017.
@@ -38,24 +39,27 @@ public class Base extends Activity{
         startActivity(i);
     }
 
+    public void launchRollsLog(View v){
+        Log.v("TAG", "swapped new activity");
+        Intent i = new Intent(this, RollsLog.class);
+        startActivity(i);
+    }
+
     public void setTexts(View v){
         GameModel.generateRoll();
         //-------------------------------------------
         for(int i=0;i<10;i++){
-            GameModel.generateRoll();
-//            switch (GameModel.getRedDie()){
-//                case 1: redView.setImageResource(R.drawable.red1);
-//                    break;
-//                case 2: redView.setImageResource(R.drawable.catan);
-//                    break;
-//                case 3: redView.setImageResource(R.drawable.catanmain);
-//                    break;
-//                case 4: redView.setImageResource(R.drawable.red4);
-//                    break;
-//            }
-            redView.setImageResource(R.drawable.catanmain);
-            timer.schedule(new Roll(),100*i);
-            redView.setImageResource(R.drawable.red4);
+            switch (GameModel.getRedDie()){
+                case 1: redView.setImageResource(R.drawable.red1);
+                    break;
+                case 2: redView.setImageResource(R.drawable.catan);
+                    break;
+                case 3: redView.setImageResource(R.drawable.catanmain);
+                    break;
+                case 4: redView.setImageResource(R.drawable.red4);
+                    break;
+            }
+            timer.schedule(new Roll(),1000);
         }
 
     }
