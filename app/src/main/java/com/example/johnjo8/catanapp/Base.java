@@ -47,6 +47,18 @@ public class Base extends Activity{
 
     public void setTexts(View v){
         GameModel.generateRoll();
+        if(GameModel.getNumRound()==0){
+            GameModel.undo();
+
+        }
+        if(GameModel.getNumRound()>0&&GameModel.getNumRound()<3) {
+            while (GameModel.getRollTotal() == 7) {
+                GameModel.undo();
+                GameModel.generateRoll();
+                Log.v("debug","A 7 was rolled in round 1 or 2");
+            }
+        }
+
         //-------------------------------------------
         for(int i=0;i<10;i++){
             switch (GameModel.getRedDie()){

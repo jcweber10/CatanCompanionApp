@@ -26,7 +26,8 @@ public class Stats extends Activity{
             v.setBackgroundColor(Color.parseColor("#008345"));
         }
         stats = (TextView)findViewById(R.id.stats);
+        GameModel.populateStats();
         stats.setText(GameModel.getStats());
-
+        stats.setTextColor(getResources().getColor(R.color.CatanGold));
     }
 }

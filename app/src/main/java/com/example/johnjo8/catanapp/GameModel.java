@@ -9,7 +9,8 @@ import java.util.Random;
  */
 
 public class GameModel {
-    private static int redDie, yellowDie,rollTotal,numPlayers,numRound,numRolls;
+    private static int redDie, yellowDie,rollTotal,numPlayers,
+            numRound,numRolls,blackEvent,blueEvent,greenEvent,yellowEvent;
     private static int[] numStats;
     private static String stats,event,gameType;
     private static List<String> turnStringList;
@@ -20,7 +21,6 @@ public class GameModel {
             numStats[i]=0;
         }
         turnStringList = new ArrayList<String>();
-        populateStats();
         numRound=0;
         numRolls=0;
     }
@@ -81,6 +81,22 @@ public class GameModel {
         for(int i=0;i<numStats.length;i++){
             stats+= (i+2)+": " + numStats[i]+"\n";
         }
+        if(gameType.equals("Cities")){
+            stats+="Black: " + blackEvent + "\n"
+                    + "Yellow: " + yellowEvent + "\n"
+                    + "Blue: " + blueEvent + "\n"
+                    + "Green: " + greenEvent + "\n";
+        }
+    }
+
+    public static void undo(){
+        numStats[rollTotal-2]--;
+        turnStringList.remove(turnStringList.size()-1);
+        numRolls--;
+        if(numRolls%numPlayers==(numPlayers-1)){
+            numRound--;
+        }
+
     }
 
     public static void generateRoll(){
@@ -96,12 +112,16 @@ public class GameModel {
             case 0:
             case 1:
             case 2: event="Black";
+                blackEvent++;
                 break;
             case 3:event="Green";
+                greenEvent++;
                 break;
             case 4: event="Yellow";
+                yellowEvent++;
                 break;
             case 5: event="Blue";
+                blueEvent++;
                 break;
         }
         //Generates and adds the turn to the list of rolls
@@ -123,7 +143,6 @@ public class GameModel {
         if (numRolls % numPlayers == 0) {
             numRound++;
         }
-    populateStats();
     }
 
 }

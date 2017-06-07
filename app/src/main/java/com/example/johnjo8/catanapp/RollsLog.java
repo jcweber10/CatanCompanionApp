@@ -1,6 +1,7 @@
 package com.example.johnjo8.catanapp;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -21,6 +22,12 @@ public class RollsLog extends Activity {
         scrollView= (ScrollView) findViewById(R.id.rollsLogScrollView);
         linearLayout=(LinearLayout)findViewById(R.id.rollsLog);
         updateRollsLog(getWindow().getDecorView());
+        View v = this.getWindow().getDecorView().getRootView();
+        if(GameModel.getGameType().equals("Base")){
+            v.setBackgroundColor(Color.parseColor("#b71f2e"));
+        } else{
+            v.setBackgroundColor(Color.parseColor("#008345"));
+        }
     }
 
     private void updateRollsLog(View v){
