@@ -66,9 +66,12 @@ public class GameModel {
         numPlayers=players;
     }
 
+    public static void incrementRolls(){numRolls++;}
+
     public static void setGameType(String type){
         gameType=type;
     }
+
     public static List<String> getTurnStringList(){
         return turnStringList;
     }

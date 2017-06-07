@@ -39,4 +39,14 @@
         android:layout_below="@+id/stats"
         />
 
+    <Button
+        android:id="@+id/endGame"
+        android:text="End game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="endGame"
+        />
+
 </RelativeLayout>

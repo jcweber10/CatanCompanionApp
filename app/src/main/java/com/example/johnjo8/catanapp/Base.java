@@ -10,9 +10,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Handler;
+
 
 /**
  * Created by johnjo8 on 6/6/2017.
@@ -21,7 +20,6 @@ import java.util.logging.Handler;
 public class Base extends Activity{
     private TextView redText,yellowText,totalText;
     private ImageView redView;
-    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,6 @@ public class Base extends Activity{
         setContentView(R.layout.base_activity);
         GameModel.setGameType("Base");
         redView= (ImageView) findViewById(R.id.redView);
-        timer = new Timer();
         //redText = (TextView) findViewById(R.id.)
     }
 
@@ -47,10 +44,6 @@ public class Base extends Activity{
 
     public void setTexts(View v){
         GameModel.generateRoll();
-        if(GameModel.getNumRound()==0){
-            GameModel.undo();
-
-        }
         if(GameModel.getNumRound()>0&&GameModel.getNumRound()<3) {
             while (GameModel.getRollTotal() == 7) {
                 GameModel.undo();
@@ -58,8 +51,6 @@ public class Base extends Activity{
                 Log.v("debug","A 7 was rolled in round 1 or 2");
             }
         }
-
-        //-------------------------------------------
         for(int i=0;i<10;i++){
             switch (GameModel.getRedDie()){
                 case 1: redView.setImageResource(R.drawable.red1);
@@ -70,15 +61,22 @@ public class Base extends Activity{
                     break;
                 case 4: redView.setImageResource(R.drawable.red4);
                     break;
+                default: redView.setImageResource(R.drawable.red1);
             }
-            timer.schedule(new Roll(),1000);
         }
 
     }
 
-    class Roll extends TimerTask{
-        public void run(){
 
-        }
+    @Override
+    public void onBackPressed(){
+
+    }
+
+    public void endGame(View v){
+        Log.v("TAG", "swapped new activity");
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
