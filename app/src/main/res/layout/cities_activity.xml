@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cities">
+    android:background="@drawable/cities"
+    >
+    <Button
+        android:id="@+id/endGame"
+        android:text="End Game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stats"
+        android:layout_centerHorizontal="true"
+        android:onClick="endGame"/>
+    <Button
+        android:id="@+id/roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:text="Roll"/>
+    <Button
+        android:text="Stats"
+        android:id="@+id/stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/roll"/>
+    <Button
+        android:id="@+id/alchemist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/stats"
+        android:layout_alignTop="@+id/stats"
+        android:text="Alchemist"/>
+    <Button
+        android:id="@+id/rollsLog"
+        android:text="Rolls Log"
+        android:layout_toLeftOf="@+id/stats"
+        android:layout_alignTop="@+id/stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-</LinearLayout>
+
+</RelativeLayout>
