@@ -6,6 +6,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.logging.Handler;
 
 
@@ -57,6 +61,23 @@ public class Base extends Activity{
                 Log.v("debug","A 7 was rolled in round 1 or 2");
             }
         }
+        List<Integer> redImages = new ArrayList<Integer>();
+        redImages.add(R.drawable.red1);
+        redImages.add(R.drawable.red2);
+        redImages.add(R.drawable.red3);
+        redImages.add(R.drawable.red4);
+        redImages.add(R.drawable.red5);
+        redImages.add(R.drawable.red6);
+        Random r = new Random();
+        final int randomImage = r.nextInt(5);
+        new CountDownTimer(500,100){
+            public void onTick(long millisUntilFinished){
+
+            }
+            public void onFinish(){
+                redView.setImageResource(randomImage);
+            }
+        }.start();
         for(int i=0;i<10;i++){
             switch (GameModel.getRedDie()){
                 case 1: redView.setImageResource(R.drawable.red1);
