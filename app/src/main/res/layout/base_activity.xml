@@ -30,13 +30,29 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/rollsLog"
+        android:soundEffectsEnabled="false"
         android:onClick="launchStats"/>
     <ImageView
         android:id="@+id/redView"
         android:adjustViewBounds="true"
-        android:layout_height="50dp"
-        android:layout_width="50dp"
+        android:scaleType="fitXY"
+        android:layout_height="60dp"
+        android:layout_width="60dp"
         android:layout_below="@+id/stats"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="24dp"
+        />
+    <ImageView
+        android:id="@+id/yellowView"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:layout_height="60dp"
+        android:layout_width="60dp"
+        android:layout_below="@+id/stats"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="24dp"
         />
 
     <Button
@@ -48,5 +64,6 @@
         android:layout_alignParentBottom="true"
         android:onClick="endGame"
         />
+
 
 </RelativeLayout>

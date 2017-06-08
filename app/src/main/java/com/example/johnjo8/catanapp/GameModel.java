@@ -76,6 +76,8 @@ public class GameModel {
         return turnStringList;
     }
 
+    public static void resetValues(){blackEvent=0;yellowEvent=0;blueEvent=0;greenEvent=0;}
+
 
 
 
@@ -137,7 +139,8 @@ public class GameModel {
                 if(event.equals("Black")){
                     turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + "Black " + rollTotal;
                 } else {
-                    turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal + " with a " + event + redDie;
+                    turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal +
+                            " with a " + event +" " + redDie;
                 }
         }
 

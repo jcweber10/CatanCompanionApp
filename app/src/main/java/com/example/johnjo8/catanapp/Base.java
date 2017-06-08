@@ -2,9 +2,13 @@ package com.example.johnjo8.catanapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,15 +23,16 @@ import java.util.logging.Handler;
 
 public class Base extends Activity{
     private TextView redText,yellowText,totalText;
-    private ImageView redView;
+    private ImageView redView,yellowView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity);
         GameModel.setGameType("Base");
-        redView= (ImageView) findViewById(R.id.redView);
-        //redText = (TextView) findViewById(R.id.)
+        redView = (ImageView) findViewById(R.id.redView);
+        yellowView = (ImageView) findViewById(R.id.yellowView);
+
     }
 
     public void launchStats(View v){
@@ -56,14 +61,33 @@ public class Base extends Activity{
             switch (GameModel.getRedDie()){
                 case 1: redView.setImageResource(R.drawable.red1);
                     break;
-                case 2: redView.setImageResource(R.drawable.catan);
+                case 2: redView.setImageResource(R.drawable.red2);
                     break;
-                case 3: redView.setImageResource(R.drawable.catanmain);
+                case 3: redView.setImageResource(R.drawable.red3);
                     break;
                 case 4: redView.setImageResource(R.drawable.red4);
                     break;
-                default: redView.setImageResource(R.drawable.red1);
+                case 5: redView.setImageResource(R.drawable.red5);
+                    break;
+                case 6: redView.setImageResource(R.drawable.red6);
+                    break;
             }
+
+            switch (GameModel.getYellowDie()){
+                case 1: yellowView.setImageResource(R.drawable.yellow1);
+                    break;
+                case 2: yellowView.setImageResource(R.drawable.yellow2);
+                    break;
+                case 3: yellowView.setImageResource(R.drawable.yellow3);
+                    break;
+                case 4: yellowView.setImageResource(R.drawable.yellow4);
+                    break;
+                case 5: yellowView.setImageResource(R.drawable.yellow5);
+                    break;
+                case 6: yellowView.setImageResource(R.drawable.yellow6);
+                    break;
+            }
+
         }
 
     }
@@ -78,6 +102,7 @@ public class Base extends Activity{
         Log.v("TAG", "swapped new activity");
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        GameModel.resetValues();
         startActivity(intent);
     }
 }
