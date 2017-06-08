@@ -44,6 +44,7 @@ public class Base extends Activity{
 
     public void setTexts(View v){
         GameModel.generateRoll();
+        //Rerolls a 7 in the first 2 rounds
         if(GameModel.getNumRound()>0&&GameModel.getNumRound()<3) {
             while (GameModel.getRollTotal() == 7) {
                 GameModel.undo();
