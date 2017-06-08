@@ -61,23 +61,26 @@ public class Base extends Activity{
                 Log.v("debug","A 7 was rolled in round 1 or 2");
             }
         }
-        List<Integer> redImages = new ArrayList<Integer>();
+        final List<Integer> redImages = new ArrayList<Integer>();
         redImages.add(R.drawable.red1);
         redImages.add(R.drawable.red2);
         redImages.add(R.drawable.red3);
         redImages.add(R.drawable.red4);
         redImages.add(R.drawable.red5);
         redImages.add(R.drawable.red6);
-        Random r = new Random();
-        final int randomImage = r.nextInt(5);
-        new CountDownTimer(500,100){
-            public void onTick(long millisUntilFinished){
+        for (int i = 0; i<10;i++) {
+            new CountDownTimer(500, 500) {
+                Random r = new Random();
 
-            }
-            public void onFinish(){
-                redView.setImageResource(randomImage);
-            }
-        }.start();
+                public void onTick(long millisUntilFinished) {
+                    redView.setImageResource(redImages.get(r.nextInt(6)));
+                }
+
+                public void onFinish() {
+                    redView.setImageResource(redImages.get(3));
+                }
+            }.start();
+        }
         for(int i=0;i<10;i++){
             switch (GameModel.getRedDie()){
                 case 1: redView.setImageResource(R.drawable.red1);
