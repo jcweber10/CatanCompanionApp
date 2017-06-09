@@ -87,6 +87,10 @@ public class GameModel {
 
     public static void setCheckForBlack(boolean bool){checkForBlack=bool;}
 
+    public static void setRedDie(int red){redDie = red;}
+
+    public static void setYellowDie(int yellow){yellowDie = yellow;}
+
 
 
 

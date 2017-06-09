@@ -54,6 +54,14 @@
         android:layout_marginRight="48dp"
         android:layout_marginTop="24dp"
         />
+    <ImageView
+        android:id="@+id/eventDie"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/yellowView"
+        android:src="@drawable/eventblue"
+        />
 
     <Button
         android:id="@+id/endGame"

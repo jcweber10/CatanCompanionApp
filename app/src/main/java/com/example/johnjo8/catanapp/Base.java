@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.concurrent.TimeUnit;
 
 import org.w3c.dom.Text;
 
@@ -51,7 +52,7 @@ public class Base extends Activity{
         startActivity(i);
     }
 
-    public void setTexts(View v){
+    public void setTexts(View v) throws InterruptedException {
         GameModel.generateRoll();
         //Rerolls a 7 in the first 2 rounds
         if(GameModel.getNumRound()>0&&GameModel.getNumRound()<3) {
@@ -68,19 +69,7 @@ public class Base extends Activity{
         redImages.add(R.drawable.red4);
         redImages.add(R.drawable.red5);
         redImages.add(R.drawable.red6);
-        for (int i = 0; i<10;i++) {
-            new CountDownTimer(500, 500) {
-                Random r = new Random();
 
-                public void onTick(long millisUntilFinished) {
-                    redView.setImageResource(redImages.get(r.nextInt(6)));
-                }
-
-                public void onFinish() {
-                    redView.setImageResource(redImages.get(3));
-                }
-            }.start();
-        }
         for(int i=0;i<10;i++){
             switch (GameModel.getRedDie()){
                 case 1: redView.setImageResource(R.drawable.red1);
