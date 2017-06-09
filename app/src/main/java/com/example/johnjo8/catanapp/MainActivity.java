@@ -3,7 +3,6 @@ package com.example.johnjo8.catanapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,7 +31,12 @@ public class MainActivity extends Activity {
         Log.v("TAG", "swapped new activity");
         Intent i = new Intent(this,Base.class);
         startActivity(i);
+    }
 
+    public void launchCities(View v){
+        Log.v("TAG", "swapped new activity");
+        Intent i = new Intent(this,Cities.class);
+        startActivity(i);
     }
 
 

@@ -27,15 +27,15 @@ import java.util.logging.Handler;
 
 public class Base extends Activity{
     private TextView redText,yellowText,totalText;
-    private ImageView redView,yellowView;
+    protected ImageView redView,yellowView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity);
         GameModel.setGameType("Base");
-        redView = (ImageView) findViewById(R.id.redView);
-        yellowView = (ImageView) findViewById(R.id.yellowView);
+        redView = (ImageView) findViewById(R.id.redViewBase);
+        yellowView = (ImageView) findViewById(R.id.yellowViewBase);
 
     }
 
@@ -119,7 +119,6 @@ public class Base extends Activity{
 
     @Override
     public void onBackPressed(){
-
     }
 
     public void endGame(View v){

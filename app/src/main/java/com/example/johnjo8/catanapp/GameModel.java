@@ -14,6 +14,7 @@ public class GameModel {
     private static int[] numStats;
     private static String stats,event,gameType;
     private static List<String> turnStringList;
+    private static boolean checkForBlack;
 
     public GameModel(){
         numStats = new int[11];
@@ -23,6 +24,8 @@ public class GameModel {
         turnStringList = new ArrayList<String>();
         numRound=0;
         numRolls=0;
+        event="";
+        checkForBlack=true;
     }
 
 
@@ -41,6 +44,8 @@ public class GameModel {
     public static int getNumPlayers(){
         return numPlayers;
     }
+
+    public static int getBlackEvent(){return blackEvent;}
 
     public static int getNumRound(){
         return numRound;
@@ -78,6 +83,10 @@ public class GameModel {
 
     public static void resetValues(){blackEvent=0;yellowEvent=0;blueEvent=0;greenEvent=0;}
 
+    public static boolean getCheckForBlack(){return checkForBlack;}
+
+    public static void setCheckForBlack(boolean bool){checkForBlack=bool;}
+
 
 
 
@@ -101,9 +110,7 @@ public class GameModel {
         if(numRolls%numPlayers==(numPlayers-1)){
             numRound--;
         }
-
     }
-
     public static void generateRoll(){
         //Generates the dice numbers
         Random r = new Random();
@@ -113,21 +120,28 @@ public class GameModel {
 
         //Generates the event colors
         int eventNum= r.nextInt(6);
-        switch(eventNum){
-            case 0:
-            case 1:
-            case 2: event="Black";
-                blackEvent++;
-                break;
-            case 3:event="Green";
-                greenEvent++;
-                break;
-            case 4: event="Yellow";
-                yellowEvent++;
-                break;
-            case 5: event="Blue";
-                blueEvent++;
-                break;
+        if(numRound>2) {
+            switch (eventNum) {
+                case 0:
+                case 1:
+                case 2:
+                    event = "Black";
+                    blackEvent++;
+                    checkForBlack=true;
+                    break;
+                case 3:
+                    event = "Green";
+                    greenEvent++;
+                    break;
+                case 4:
+                    event = "Yellow";
+                    yellowEvent++;
+                    break;
+                case 5:
+                    event = "Blue";
+                    blueEvent++;
+                    break;
+            }
         }
         //Generates and adds the turn to the list of rolls
         String turnString ="";
@@ -136,7 +150,9 @@ public class GameModel {
                 turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal;
                 break;
             case "Cities":
-                if(event.equals("Black")){
+                if(numRound<3){
+                    turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal;
+                } else if(event.equals("Black")){
                     turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + "Black " + rollTotal;
                 } else {
                     turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal +

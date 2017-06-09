@@ -12,14 +12,15 @@
         android:layout_below="@+id/stats"
         android:layout_centerHorizontal="true"
         android:onClick="endGame" />
+
     <Button
         android:id="@+id/roll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="250dp"
-        android:text="Roll"
-        android:onClick="roll"/>
+        android:onClick="setTexts"
+        android:text="Roll" />
     <Button
         android:text="Stats"
         android:id="@+id/stats"
@@ -44,6 +45,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="launchRollsLog"/>
-
+    <ImageView
+        android:id="@+id/redViewCities"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="24dp"
+        android:layout_below="@+id/endGame"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        />
+    <ImageView
+        android:id="@+id/yellowViewCities"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:layout_below="@+id/endGame"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        />
+    <ImageView
+        android:id="@+id/eventView"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/redViewCities"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        />
 
 </RelativeLayout>

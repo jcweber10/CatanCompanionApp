@@ -24,6 +24,13 @@
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
         </activity>
+        <activity android:name=".Cities">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            </intent-filter>
+        </activity>
         <activity android:name=".Stats">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +39,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".RollsLog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            </intent-filter>
+        </activity>
+        <activity android:name=".Barbarians">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
