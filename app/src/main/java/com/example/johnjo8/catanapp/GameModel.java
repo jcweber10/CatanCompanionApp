@@ -78,6 +78,10 @@ public class GameModel {
 
     public static void resetValues(){blackEvent=0;yellowEvent=0;blueEvent=0;greenEvent=0;}
 
+    public static void setRedDie(int red){redDie = red;}
+
+    public static void setYellowDie(int yellow){yellowDie = yellow;}
+
 
 
 

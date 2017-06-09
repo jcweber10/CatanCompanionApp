@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cities">
+
+    <EditText
+        android:id="@+id/redDie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textStyle="bold"
+        android:hint="Pick your red die"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="30dp"
+        android:textColorHint="@color/CatanRed"/>
+    <EditText
+        android:id="@+id/yellowDie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/redDie"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/redDie"
+        android:textColorHint="@color/CatanGold"
+        android:hint="Pick your yellow die"/>
+    <Button
+        android:id="@+id/roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Roll"
+        android:layout_marginTop="60dp"
+        android:layout_below="@+id/yellowDie"
+        android:onClick="returnToCities"/>
+
+</RelativeLayout>
