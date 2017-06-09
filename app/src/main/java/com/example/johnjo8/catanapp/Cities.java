@@ -73,5 +73,9 @@ public class Cities extends Base {
         startActivity(i);
     }
 
+    public void launchAlchemist(View v){
+        Intent i = new Intent(this,Alchemist.class);
+        startActivity(i);
+    }
 
 }
