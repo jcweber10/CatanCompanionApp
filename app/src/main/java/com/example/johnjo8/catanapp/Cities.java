@@ -38,6 +38,8 @@ public class Cities extends Base {
         //Rerolls 7s in first 2 rounds
         if(GameModel.getNumRound()>0&&GameModel.getNumRound()<3) {
             while (GameModel.getRollTotal() == 7) {
+                //CHECK ON THE UNDO. THE ERROR IS BECAUSE IT'S SAYING GET(-1) WHEN LENGTH IS 0
+
                 GameModel.undo();
                 GameModel.generateRoll();
                 Log.v("debug","A 7 was rolled in round 1 or 2");
