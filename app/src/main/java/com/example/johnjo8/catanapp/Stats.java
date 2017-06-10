@@ -30,4 +30,9 @@ public class Stats extends Activity{
         stats.setText(GameModel.getStats());
         stats.setTextColor(getResources().getColor(R.color.CatanGold));
     }
+
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
 }

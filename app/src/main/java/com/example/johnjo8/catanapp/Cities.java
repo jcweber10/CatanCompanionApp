@@ -1,7 +1,10 @@
 package com.example.johnjo8.catanapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +18,7 @@ import android.widget.TextView;
 
 public class Cities extends Base {
     private ImageView eventView;
-    private TextView barbDistance;
+    private  TextView barbDistance;
     private boolean checkForBlack;
 
     @Override
@@ -27,24 +30,15 @@ public class Cities extends Base {
         yellowView = (ImageView) findViewById(R.id.yellowViewCities);
         eventView= (ImageView) findViewById(R.id.eventView);
         barbDistance= (TextView)findViewById(R.id.barbTracker);
+
     }
 
-    public void setTexts(View v){
+    public void setTexts(View v) throws InterruptedException{
         //Displays the barbarian distance to be 7 as soon as the third round starts
         if(GameModel.getNumRound()==3&&barbDistance.getText().length()==0){
             barbDistance.setText("The barbarians are " + 7 + " spaces away.");
         }
-        GameModel.generateRoll();
-        //Rerolls 7s in first 2 rounds
-        if(GameModel.getNumRound()>0&&GameModel.getNumRound()<3) {
-            while (GameModel.getRollTotal() == 7) {
-                //CHECK ON THE UNDO. THE ERROR IS BECAUSE IT'S SAYING GET(-1) WHEN LENGTH IS 0
-
-                GameModel.undo();
-                GameModel.generateRoll();
-                Log.v("debug","A 7 was rolled in round 1 or 2");
-            }
-        }
+        super.setTexts(v);
         //Launches Barbarian attack page when the 7th black is rolled
         if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
             launchBarbarians(v);
@@ -61,9 +55,11 @@ public class Cities extends Base {
                 barbDistance.setText("The barbarians are " + (7 - GameModel.getBlackEvent() % 7) + " spaces away.");
             }
         }
+        GameModel.setAlchemistRoll(false);
+
     }
 
-    public void roll1000(View v){
+    public void roll1000(View v) throws InterruptedException{
         for(int i=0;i<1000;i++){
             setTexts(v);
         }
@@ -76,8 +72,23 @@ public class Cities extends Base {
     }
 
     public void launchAlchemist(View v){
+        Log.v("TAG", "swapped new activity");
         Intent i = new Intent(this,Alchemist.class);
-        startActivity(i);
+        startActivityForResult(i,1);
     }
+
+
+    //Sets the images once the alchemist class closes
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode, Intent data){
+        try {
+            setTexts(this.getWindow().getDecorView().getRootView());
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 }

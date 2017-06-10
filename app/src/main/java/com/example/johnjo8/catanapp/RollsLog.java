@@ -39,5 +39,10 @@ public class RollsLog extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed(){
+        finish();
+    }
+
 
 }
