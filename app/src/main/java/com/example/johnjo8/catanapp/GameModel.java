@@ -14,7 +14,7 @@ public class GameModel {
     private static int[] numStats;
     private static String stats,event,gameType;
     private static List<String> turnStringList;
-    private static boolean checkForBlack;
+    private static boolean checkForBlack,alchemistRoll;
 
     public GameModel(){
         numStats = new int[11];
@@ -26,6 +26,7 @@ public class GameModel {
         numRolls=0;
         event="";
         checkForBlack=true;
+        alchemistRoll=false;
     }
 
 
@@ -83,7 +84,11 @@ public class GameModel {
 
     public static void resetValues(){blackEvent=0;yellowEvent=0;blueEvent=0;greenEvent=0;}
 
+    public static void setAlchemistRoll(boolean isAlchemist){alchemistRoll=isAlchemist;}
+
     public static boolean getCheckForBlack(){return checkForBlack;}
+
+    public static boolean getAlchemistRoll(){return alchemistRoll;}
 
     public static void setCheckForBlack(boolean bool){checkForBlack=bool;}
 
@@ -107,9 +112,7 @@ public class GameModel {
 
     public static void undo(){
         numStats[rollTotal-2]--;
-        if(turnStringList.size()>0) {
-            turnStringList.remove(turnStringList.size() - 1);
-        }
+        turnStringList.remove(turnStringList.size() - 1);
         numRolls--;
         if(numRolls%numPlayers==(numPlayers-1)){
             numRound--;
@@ -118,9 +121,12 @@ public class GameModel {
     public static void generateRoll(){
         //Generates the dice numbers
         Random r = new Random();
-        redDie = r.nextInt(6)+1;
-        yellowDie= r.nextInt(6)+1;
-        rollTotal= redDie+yellowDie;
+        //Generates random numbers if it is not the alchemist roll
+        if(!alchemistRoll) {
+            redDie = r.nextInt(6) + 1;
+            yellowDie = r.nextInt(6) + 1;
+        }
+        rollTotal = redDie + yellowDie;
 
         //Generates the event colors
         int eventNum= r.nextInt(6);
@@ -173,6 +179,7 @@ public class GameModel {
         if (numRolls % numPlayers == 0) {
             numRound++;
         }
+        alchemistRoll=false;
     }
 
 }

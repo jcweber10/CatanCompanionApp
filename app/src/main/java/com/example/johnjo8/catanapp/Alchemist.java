@@ -25,9 +25,10 @@ public class Alchemist extends Activity {
         roller = (Button) findViewById(R.id.roll);
     }
     public void returnToCities(View v){
-        GameModel.generateRoll();
+        GameModel.setAlchemistRoll(true);
         GameModel.setRedDie(Integer.parseInt((redRoll.getText().toString())));
         GameModel.setYellowDie(Integer.parseInt((yellowRoll.getText().toString())));
+        GameModel.generateRoll();
         Intent i = new Intent(this,Cities.class);
         startActivity(i);
 
