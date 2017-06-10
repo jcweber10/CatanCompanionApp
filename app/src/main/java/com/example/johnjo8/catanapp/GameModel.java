@@ -107,7 +107,9 @@ public class GameModel {
 
     public static void undo(){
         numStats[rollTotal-2]--;
-        turnStringList.remove(turnStringList.size()-1);
+        if(turnStringList.size()>0) {
+            turnStringList.remove(turnStringList.size() - 1);
+        }
         numRolls--;
         if(numRolls%numPlayers==(numPlayers-1)){
             numRound--;
