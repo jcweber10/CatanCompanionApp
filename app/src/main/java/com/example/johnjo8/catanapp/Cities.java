@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Random;
+
 /**
  * Created by dan97w on 6/7/2017.
  */
@@ -20,6 +22,7 @@ public class Cities extends Base {
     private ImageView eventView;
     private  TextView barbDistance;
     private boolean checkForBlack;
+    Random r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class Cities extends Base {
         yellowView = (ImageView) findViewById(R.id.yellowViewCities);
         eventView= (ImageView) findViewById(R.id.eventView);
         barbDistance= (TextView)findViewById(R.id.barbTracker);
+        r = new Random();
 
     }
 
@@ -38,6 +42,22 @@ public class Cities extends Base {
         if(GameModel.getNumRound()==3&&barbDistance.getText().length()==0){
             barbDistance.setText("The barbarians are " + 7 + " spaces away.");
         }
+        if(GameModel.getNumRound()>2) {
+            switch (GameModel.getEvent()) {
+                case "Black":
+                    eventView.setImageResource(R.drawable.eventblack);
+                    break;
+                case "Green":
+                    eventView.setImageResource(R.drawable.eventgreen);
+                    break;
+                case "Yellow":
+                    eventView.setImageResource(R.drawable.eventyellow);
+                    break;
+                case "Blue":
+                    eventView.setImageResource(R.drawable.eventblue);
+                    break;
+            }
+        }
         super.updateView(v);
         //Launches Barbarian attack page when the 7th black is rolled
         if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
@@ -45,6 +65,7 @@ public class Cities extends Base {
             GameModel.setCheckForBlack(false);
             barbDistance.setText("The barbarians are " + 7 + " spaces away.");
         }
+
 
 
         //Displays the Barbarian distance
@@ -87,8 +108,6 @@ public class Cities extends Base {
             e.printStackTrace();
         }
     }
-
-
 
 
 }
