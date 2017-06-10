@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cities">
+    android:background="@drawable/cities"
+
+    >
 
     <EditText
         android:id="@+id/redDie"
@@ -11,7 +13,7 @@
         android:inputType="number"
         android:textStyle="bold"
         android:hint="Pick your red die"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="250dp"
         android:layout_marginLeft="30dp"
         android:textColorHint="@color/CatanRed"/>
     <EditText

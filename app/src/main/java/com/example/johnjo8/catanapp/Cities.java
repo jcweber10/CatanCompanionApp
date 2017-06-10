@@ -1,8 +1,6 @@
 package com.example.johnjo8.catanapp;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +27,7 @@ public class Cities extends Base {
         barbDistance= (TextView)findViewById(R.id.barbTracker);
     }
 
-    public void setTexts(View v){
+    public void updateView(View v){
         //Displays the barbarian distance to be 7 as soon as the third round starts
         if(GameModel.getNumRound()==3&&barbDistance.getText().length()==0){
             barbDistance.setText("The barbarians are " + 7 + " spaces away.");
@@ -65,7 +63,7 @@ public class Cities extends Base {
 
     public void roll1000(View v){
         for(int i=0;i<1000;i++){
-            setTexts(v);
+            updateView(v);
         }
     }
 

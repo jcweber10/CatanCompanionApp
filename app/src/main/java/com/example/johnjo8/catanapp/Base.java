@@ -7,9 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.concurrent.TimeUnit;
@@ -27,10 +29,21 @@ import java.util.logging.Handler;
  */
 
 public class Base extends Activity{
-    private TextView redText,yellowText,totalText;
+    private TextView redText,yellowText,totalText,turnTimeText,gameTimeText;
+    Chronometer turnTime,gameTime;
     protected ImageView redView,yellowView;
+
     Random r;
     Random y;
+    int lastRed;
+    int currentRed;
+    int lastYellow;
+    int currentYellow;
+    int animationTime;
+    int yellowAnimationTime;
+    int playerNumber;
+    Timer redTimer;
+    Timer yellowTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +54,13 @@ public class Base extends Activity{
         yellowView = (ImageView) findViewById(R.id.yellowViewBase);
         r = new Random();
         y = new Random();
+        turnTime = (Chronometer) findViewById(R.id.turnTimer);
+        turnTimeText = (TextView) findViewById(R.id.turn);
+        gameTime = (Chronometer) findViewById(R.id.gameTimer);
+        gameTimeText = (TextView) findViewById(R.id.game);
+        playerNumber=0;
+        gameTime.start();
+
 
     }
 
@@ -56,7 +76,10 @@ public class Base extends Activity{
         startActivity(i);
     }
 
-    public void setTexts(View v) throws InterruptedException {
+    public void updateView(View v) throws InterruptedException {
+        turnTimeText.setText("Player " + (GameModel.getNumRolls()%GameModel.getNumPlayers()+1));
+        turnTime.setBase(SystemClock.elapsedRealtime());
+        turnTime.start();
         GameModel.generateRoll();
         //Rerolls a 7 in the first 2 rounds
         if(GameModel.getNumRound()>0&&GameModel.getNumRound()<3) {
@@ -73,17 +96,27 @@ public class Base extends Activity{
         redImages.add(R.drawable.red4);
         redImages.add(R.drawable.red5);
         redImages.add(R.drawable.red6);
-            for(int i = 0;i<100;i++) {
-                new CountDownTimer(r.nextInt(1500)+500, 70) {
+        animationTime = 20;
+
+          //  for(int i = 0;i<100;i++) {
+               redTimer= new Timer(r.nextInt(1500)+1000, animationTime) {
 
                    //int x = r.nextInt(6);
                     int x = 0;
                     public void onTick(long millisUntilFinished) {
-                       redView.setImageResource(redImages.get(x));
-                        x++;
-                        if(x==6){
-                            x=0;
+                        currentRed = r.nextInt(6);
+                        if(currentRed!=lastRed) {
+                            redView.setImageResource(redImages.get(currentRed));
+                        } else{
+                            redView.setImageResource(redImages.get(r.nextInt(6)));
                         }
+                        lastRed = currentRed;
+//                        x++;
+//                        if(x==6){
+//                            x=0;
+//                        }
+                        animationTime+=50;
+                        redTimer.changeInterval(animationTime);
                     }
 
                     public void onFinish() {
@@ -104,7 +137,7 @@ public class Base extends Activity{
                     }
 
                 }.start();
-            }
+            //}
 
             final List<Integer> yellowImages = new ArrayList<Integer>();
         yellowImages.add(R.drawable.yellow1);
@@ -113,20 +146,30 @@ public class Base extends Activity{
         yellowImages.add(R.drawable.yellow4);
         yellowImages.add(R.drawable.yellow5);
         yellowImages.add(R.drawable.yellow6);
-        for(int i = 0;i<100;i++) {
-            new CountDownTimer(y.nextInt(1500)+500, 70) {
+       yellowAnimationTime = 20;
 
-                //int x = r.nextInt(6);
-                int x = 0;
-                public void onTick(long millisUntilFinished) {
-                    yellowView.setImageResource(yellowImages.get(x));
-                    x++;
-                    if(x==6){
-                        x=0;
-                    }
+        //  for(int i = 0;i<100;i++) {
+        yellowTimer= new Timer(r.nextInt(1500)+1000, yellowAnimationTime) {
+
+            //int x = r.nextInt(6);
+            int x = 0;
+            public void onTick(long millisUntilFinished) {
+                currentYellow = y.nextInt(6);
+                if(currentYellow!=lastYellow) {
+                    yellowView.setImageResource(yellowImages.get(currentYellow));
+                } else{
+                    yellowView.setImageResource(yellowImages.get(y.nextInt(6)));
                 }
+                lastRed = currentRed;
+//                        x++;
+//                        if(x==6){
+//                            x=0;
+//                        }
+                yellowAnimationTime+=50;
+                yellowTimer.changeInterval(yellowAnimationTime);
+            }
 
-                public void onFinish() {
+            public void onFinish() {
                     switch (GameModel.getYellowDie()){
                         case 1: yellowView.setImageResource(R.drawable.yellow1);
                             break;
@@ -144,7 +187,7 @@ public class Base extends Activity{
                 }
 
             }.start();
-        }
+       // }
 
 
 

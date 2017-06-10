@@ -16,6 +16,7 @@ public class GameModel {
     private static List<String> turnStringList;
     private static boolean checkForBlack,alchemistRoll;
 
+
     public GameModel(){
         numStats = new int[11];
         for(int i=0;i<numStats.length;i++){
@@ -51,6 +52,8 @@ public class GameModel {
     public static int getNumRound(){
         return numRound;
     }
+
+    public static int getNumRolls(){return numRolls;}
 
     public static int[] getNumStats(){
         return numStats;

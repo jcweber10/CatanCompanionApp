@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/catanmain"
-    tools:context="com.example.johnjo8.catanapp.MainActivity">
+    tools:context="com.example.johnjo8.catanapp.MainActivity"
+    android:screenOrientation="portrait">
 
     <Button
         android:id="@+id/launchBase"

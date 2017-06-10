@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
         android:layout_centerHorizontal="true"
-        android:onClick="setTexts"
+        android:onClick="updateView"
         />
 
 
@@ -54,14 +54,6 @@
         android:layout_marginRight="48dp"
         android:layout_marginTop="24dp"
         />
-    <ImageView
-        android:id="@+id/eventDie"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/yellowView"
-        android:src="@drawable/eventblue"
-        />
 
     <Button
         android:id="@+id/endGame"
@@ -72,6 +64,49 @@
         android:layout_alignParentBottom="true"
         android:onClick="endGame"
         />
+    <Chronometer
+        android:id="@+id/turnTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/roll"
+        android:textSize="16dp"
+        android:paddingBottom="14dp"
+        android:layout_marginRight="24dp"
+        android:layout_alignBottom="@+id/roll"
+        android:textColor="@color/CatanGold"/>
+    <TextView
+        android:id="@+id/turn"
+        android:text="Player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/roll"
+        android:layout_marginRight="12dp"
+        android:textSize="16dp"
+        android:paddingBottom="14dp"
+        android:layout_toLeftOf="@id/turnTimer"
+        android:textColor="@color/CatanGold"/>
+    <Chronometer
+        android:id="@+id/gameTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/game"
+        android:textSize="16dp"
+        android:paddingBottom="14dp"
+        android:layout_marginRight="24dp"
+        android:layout_alignBottom="@+id/roll"
+        android:textColor="@color/CatanGold"/>
+    <TextView
+        android:id="@+id/game"
+        android:text="Game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/roll"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="8dp"
+        android:textSize="16dp"
+        android:paddingBottom="14dp"
+        android:layout_toRightOf="@id/roll"
+        android:textColor="@color/CatanGold"/>
 
 
 </RelativeLayout>
