@@ -33,12 +33,12 @@ public class Cities extends Base {
 
     }
 
-    public void updateView(View v){
+    public void updateView(View v) throws InterruptedException{
         //Displays the barbarian distance to be 7 as soon as the third round starts
         if(GameModel.getNumRound()==3&&barbDistance.getText().length()==0){
             barbDistance.setText("The barbarians are " + 7 + " spaces away.");
         }
-        super.setTexts(v);
+        super.updateView(v);
         //Launches Barbarian attack page when the 7th black is rolled
         if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
             launchBarbarians(v);
@@ -59,7 +59,7 @@ public class Cities extends Base {
 
     }
 
-    public void roll1000(View v){
+    public void roll1000(View v) throws InterruptedException{
         for(int i=0;i<1000;i++){
             updateView(v);
         }
@@ -82,7 +82,7 @@ public class Cities extends Base {
     @Override
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
         try {
-            setTexts(this.getWindow().getDecorView().getRootView());
+            updateView(this.getWindow().getDecorView().getRootView());
         } catch (InterruptedException e){
             e.printStackTrace();
         }
