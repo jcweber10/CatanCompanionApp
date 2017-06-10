@@ -29,6 +29,8 @@ import java.util.logging.Handler;
 public class Base extends Activity{
     private TextView redText,yellowText,totalText;
     protected ImageView redView,yellowView;
+    Random r;
+    Random y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class Base extends Activity{
         GameModel.setGameType("Base");
         redView = (ImageView) findViewById(R.id.redViewBase);
         yellowView = (ImageView) findViewById(R.id.yellowViewBase);
+        r = new Random();
+        y = new Random();
 
     }
 
@@ -69,39 +73,81 @@ public class Base extends Activity{
         redImages.add(R.drawable.red4);
         redImages.add(R.drawable.red5);
         redImages.add(R.drawable.red6);
+            for(int i = 0;i<100;i++) {
+                new CountDownTimer(r.nextInt(1500)+500, 70) {
 
-        for(int i=0;i<10;i++){
-            switch (GameModel.getRedDie()){
-                case 1: redView.setImageResource(R.drawable.red1);
-                    break;
-                case 2: redView.setImageResource(R.drawable.red2);
-                    break;
-                case 3: redView.setImageResource(R.drawable.red3);
-                    break;
-                case 4: redView.setImageResource(R.drawable.red4);
-                    break;
-                case 5: redView.setImageResource(R.drawable.red5);
-                    break;
-                case 6: redView.setImageResource(R.drawable.red6);
-                    break;
+                   //int x = r.nextInt(6);
+                    int x = 0;
+                    public void onTick(long millisUntilFinished) {
+                       redView.setImageResource(redImages.get(x));
+                        x++;
+                        if(x==6){
+                            x=0;
+                        }
+                    }
+
+                    public void onFinish() {
+                        switch (GameModel.getRedDie()){
+                            case 1: redView.setImageResource(R.drawable.red1);
+                                break;
+                            case 2: redView.setImageResource(R.drawable.red2);
+                                break;
+                            case 3: redView.setImageResource(R.drawable.red3);
+                                break;
+                            case 4: redView.setImageResource(R.drawable.red4);
+                                break;
+                            case 5: redView.setImageResource(R.drawable.red5);
+                                break;
+                            case 6: redView.setImageResource(R.drawable.red6);
+                                break;
+                        }
+                    }
+
+                }.start();
             }
 
-            switch (GameModel.getYellowDie()){
-                case 1: yellowView.setImageResource(R.drawable.yellow1);
-                    break;
-                case 2: yellowView.setImageResource(R.drawable.yellow2);
-                    break;
-                case 3: yellowView.setImageResource(R.drawable.yellow3);
-                    break;
-                case 4: yellowView.setImageResource(R.drawable.yellow4);
-                    break;
-                case 5: yellowView.setImageResource(R.drawable.yellow5);
-                    break;
-                case 6: yellowView.setImageResource(R.drawable.yellow6);
-                    break;
-            }
+            final List<Integer> yellowImages = new ArrayList<Integer>();
+        yellowImages.add(R.drawable.yellow1);
+        yellowImages.add(R.drawable.yellow2);
+        yellowImages.add(R.drawable.yellow3);
+        yellowImages.add(R.drawable.yellow4);
+        yellowImages.add(R.drawable.yellow5);
+        yellowImages.add(R.drawable.yellow6);
+        for(int i = 0;i<100;i++) {
+            new CountDownTimer(y.nextInt(1500)+500, 70) {
 
+                //int x = r.nextInt(6);
+                int x = 0;
+                public void onTick(long millisUntilFinished) {
+                    yellowView.setImageResource(yellowImages.get(x));
+                    x++;
+                    if(x==6){
+                        x=0;
+                    }
+                }
+
+                public void onFinish() {
+                    switch (GameModel.getYellowDie()){
+                        case 1: yellowView.setImageResource(R.drawable.yellow1);
+                            break;
+                        case 2: yellowView.setImageResource(R.drawable.yellow2);
+                            break;
+                        case 3: yellowView.setImageResource(R.drawable.yellow3);
+                            break;
+                        case 4: yellowView.setImageResource(R.drawable.yellow4);
+                            break;
+                        case 5: yellowView.setImageResource(R.drawable.yellow5);
+                            break;
+                        case 6: yellowView.setImageResource(R.drawable.yellow6);
+                            break;
+                    }
+                }
+
+            }.start();
         }
+
+
+
 
     }
 
