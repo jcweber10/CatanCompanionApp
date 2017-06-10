@@ -102,7 +102,7 @@ public class Base extends Activity{
                redTimer= new Timer(r.nextInt(1500)+1000, animationTime) {
 
                    //int x = r.nextInt(6);
-                    int x = 0;
+
                     public void onTick(long millisUntilFinished) {
                         currentRed = r.nextInt(6);
                         if(currentRed!=lastRed) {
