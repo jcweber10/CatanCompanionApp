@@ -182,7 +182,6 @@ public class GameModel {
         if (numRolls % numPlayers == 0) {
             numRound++;
         }
-        alchemistRoll=false;
     }
 
 }

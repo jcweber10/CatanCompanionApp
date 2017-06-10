@@ -23,7 +23,7 @@ public class Barbarians extends Activity {
 //        sound.start();
     }
     public void restore(View v){
-        onBackPressed();
         //sound.stop();
+        finish();
     }
 }
