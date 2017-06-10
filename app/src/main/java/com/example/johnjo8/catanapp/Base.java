@@ -29,7 +29,7 @@ import java.util.logging.Handler;
  */
 
 public class Base extends Activity{
-    private TextView redText,yellowText,totalText,turnTimeText,gameTimeText;
+    protected TextView redText,yellowText,totalText,turnTimeText,gameTimeText;
     Chronometer turnTime,gameTime;
     protected ImageView redView,yellowView;
 

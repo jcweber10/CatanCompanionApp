@@ -13,7 +13,7 @@ import android.widget.ImageView;
  * Created by dan97w on 6/8/2017.
  */
 
-public class Alchemist extends Cities {
+public class Alchemist extends Activity {
 
     EditText redRoll,yellowRoll;
     Button roller;
@@ -29,7 +29,6 @@ public class Alchemist extends Cities {
     public void returnToCities(View v){
         GameModel.setRedDie(Integer.parseInt((redRoll.getText().toString())));
         GameModel.setYellowDie(Integer.parseInt((yellowRoll.getText().toString())));
-        GameModel.generateRoll();
         GameModel.setAlchemistRoll(true);
         Intent intent = new Intent();
         intent.putExtra("result",1);

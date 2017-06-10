@@ -7,8 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +25,7 @@ public class Cities extends Base {
     private ImageView eventView;
     private  TextView barbDistance;
     private boolean checkForBlack;
+    private Button alchemistButton;
     Random r;
 
     @Override
@@ -34,10 +38,20 @@ public class Cities extends Base {
         eventView= (ImageView) findViewById(R.id.eventView);
         barbDistance= (TextView)findViewById(R.id.barbTracker);
         r = new Random();
+        turnTime = (Chronometer) findViewById(R.id.turnTimer);
+        turnTimeText = (TextView) findViewById(R.id.turn);
+        gameTime = (Chronometer) findViewById(R.id.gameTimer);
+        gameTimeText = (TextView) findViewById(R.id.game);
+        alchemistButton = (Button)findViewById(R.id.alchemist);
+        alchemistButton.setClickable(false);
+        gameTime.start();
 
     }
 
     public void updateView(View v) throws InterruptedException{
+        turnTimeText.setText("Player " + (GameModel.getNumRolls()%GameModel.getNumPlayers()+1));
+        turnTime.setBase(SystemClock.elapsedRealtime());
+        turnTime.start();
         //Displays the barbarian distance to be 7 as soon as the third round starts
         if(GameModel.getNumRound()==3&&barbDistance.getText().length()==0){
             barbDistance.setText("The barbarians are " + 7 + " spaces away.");
@@ -77,7 +91,9 @@ public class Cities extends Base {
             }
         }
         GameModel.setAlchemistRoll(false);
-
+        if(((GameModel.getNumRolls()+1)/GameModel.getNumPlayers())==4){
+            alchemistButton.setClickable(true);
+        }
     }
 
     public void roll1000(View v) throws InterruptedException{
