@@ -56,7 +56,7 @@ public class Cities extends Base {
         if(GameModel.getNumRound()==3&&barbDistance.getText().length()==0){
             barbDistance.setText("The barbarians are " + 7 + " spaces away.");
         }
-        if(GameModel.getNumRound()>2) {
+        if(GameModel.getNumRound()>3) {
             switch (GameModel.getEvent()) {
                 case "Black":
                     eventView.setImageResource(R.drawable.eventblack);
