@@ -1,5 +1,7 @@
 package com.example.johnjo8.catanapp;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,6 +17,7 @@ public class GameModel {
     private static String stats,event,gameType;
     private static List<String> turnStringList;
     private static boolean checkForBlack,alchemistRoll;
+    private static Random random;
 
 
     public GameModel(){
@@ -28,6 +31,7 @@ public class GameModel {
         event="";
         checkForBlack=true;
         alchemistRoll=false;
+        random= new Random();
     }
 
 
@@ -113,26 +117,24 @@ public class GameModel {
         }
     }
 
-    public static void undo(){
-        numStats[rollTotal-2]--;
-        turnStringList.remove(turnStringList.size() - 1);
-        numRolls--;
-        if(numRolls%numPlayers==(numPlayers-1)){
-            numRound--;
-        }
-    }
     public static void generateRoll(){
-        //Generates the dice numbers
-        Random r = new Random();
         //Generates random numbers if it is not the alchemist roll
         if(!alchemistRoll) {
-            redDie = r.nextInt(6) + 1;
-            yellowDie = r.nextInt(6) + 1;
+            redDie = random.nextInt(6) + 1;
+            yellowDie = random.nextInt(6) + 1;
         }
         rollTotal = redDie + yellowDie;
 
+        //Rerolls a 7 in rounds 1 and 2
+        if(numRound>0&&numRound<3) {
+            while (rollTotal == 7) {
+                GameModel.generateRoll();
+                Log.v("debug","A 7 was rolled in round 1 or 2");
+            }
+        }
+
         //Generates the event colors
-        int eventNum= r.nextInt(6);
+        int eventNum= random.nextInt(6);
         if(numRound>2) {
             switch (eventNum) {
                 case 0:

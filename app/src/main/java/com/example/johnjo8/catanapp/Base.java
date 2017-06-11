@@ -81,14 +81,6 @@ public class Base extends Activity{
         turnTime.setBase(SystemClock.elapsedRealtime());
         turnTime.start();
         GameModel.generateRoll();
-        //Rerolls a 7 in the first 2 rounds
-        if(GameModel.getNumRound()>0&&GameModel.getNumRound()<3) {
-            while (GameModel.getRollTotal() == 7) {
-                GameModel.undo();
-                GameModel.generateRoll();
-                Log.v("debug","A 7 was rolled in round 1 or 2");
-            }
-        }
         final List<Integer> redImages = new ArrayList<Integer>();
         redImages.add(R.drawable.red1);
         redImages.add(R.drawable.red2);
@@ -101,20 +93,14 @@ public class Base extends Activity{
           //  for(int i = 0;i<100;i++) {
                redTimer= new Timer(r.nextInt(1500)+1000, animationTime) {
 
-                   //int x = r.nextInt(6);
 
                     public void onTick(long millisUntilFinished) {
                         currentRed = r.nextInt(6);
-                        if(currentRed!=lastRed) {
-                            redView.setImageResource(redImages.get(currentRed));
-                        } else{
-                            redView.setImageResource(redImages.get(r.nextInt(6)));
+                        while(currentRed==lastRed){
+                            currentRed=r.nextInt(6);
                         }
+                        redView.setImageResource(redImages.get(currentRed));
                         lastRed = currentRed;
-//                        x++;
-//                        if(x==6){
-//                            x=0;
-//                        }
                         animationTime+=50;
                         redTimer.changeInterval(animationTime);
                     }
