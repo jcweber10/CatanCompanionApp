@@ -88,10 +88,10 @@ public class Base extends Activity{
         redImages.add(R.drawable.red4);
         redImages.add(R.drawable.red5);
         redImages.add(R.drawable.red6);
-        animationTime = 20;
+        animationTime = 30;
 
           //  for(int i = 0;i<100;i++) {
-               redTimer= new Timer(r.nextInt(1500)+1000, animationTime) {
+               redTimer= new Timer(r.nextInt(700)+1000, animationTime) {
 
 
                     public void onTick(long millisUntilFinished) {
@@ -101,7 +101,7 @@ public class Base extends Activity{
                         }
                         redView.setImageResource(redImages.get(currentRed));
                         lastRed = currentRed;
-                        animationTime+=50;
+                        animationTime+=10;
                         redTimer.changeInterval(animationTime);
                     }
 
@@ -132,10 +132,10 @@ public class Base extends Activity{
         yellowImages.add(R.drawable.yellow4);
         yellowImages.add(R.drawable.yellow5);
         yellowImages.add(R.drawable.yellow6);
-       yellowAnimationTime = 20;
+       yellowAnimationTime = 30;
 
         //  for(int i = 0;i<100;i++) {
-        yellowTimer= new Timer(r.nextInt(1500)+1000, yellowAnimationTime) {
+        yellowTimer= new Timer(r.nextInt(700)+1000, yellowAnimationTime) {
 
             //int x = r.nextInt(6);
             int x = 0;
@@ -151,7 +151,7 @@ public class Base extends Activity{
 //                        if(x==6){
 //                            x=0;
 //                        }
-                yellowAnimationTime+=50;
+                yellowAnimationTime+=10;
                 yellowTimer.changeInterval(yellowAnimationTime);
             }
 

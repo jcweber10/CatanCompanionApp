@@ -15,8 +15,6 @@ import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -28,9 +26,6 @@ public class Cities extends Base {
     private  TextView barbDistance;
     private boolean checkForBlack;
     private Button alchemistButton;
-    private int lastEvent,currentEvent;
-    private Timer eventTimer;
-    private List<Integer> eventImages;
     Random r;
 
     @Override
@@ -49,11 +44,6 @@ public class Cities extends Base {
         gameTimeText = (TextView) findViewById(R.id.game);
         alchemistButton = (Button)findViewById(R.id.alchemist);
         alchemistButton.setClickable(false);
-        eventImages = new ArrayList<Integer>();
-        eventImages.add(R.drawable.eventyellow);
-        eventImages.add(R.drawable.eventblack);
-        eventImages.add(R.drawable.eventblue);
-        eventImages.add(R.drawable.eventgreen);
         gameTime.start();
 
     }
@@ -66,63 +56,23 @@ public class Cities extends Base {
         if(GameModel.getNumRound()==3&&barbDistance.getText().length()==0){
             barbDistance.setText("The barbarians are " + 7 + " spaces away.");
         }
-        super.updateView(v);
-        //Displays the event dice
-        animationTime = 20;
-
-        //  for(int i = 0;i<100;i++) {
-        if((GameModel.getNumRolls()-1)/GameModel.getNumPlayers()>2) {
-            eventTimer = new Timer(r.nextInt(1500) + 1000, animationTime) {
-                public void onTick(long millisUntilFinished) {
-                    currentEvent = r.nextInt(4);
-                    while (currentEvent == lastEvent) {
-                        currentEvent = r.nextInt(4);
-                    }
-                    eventView.setImageResource(eventImages.get(currentEvent));
-                    lastEvent = currentEvent;
-                    animationTime += 50;
-                    eventTimer.changeInterval(animationTime);
-                }
-
-                public void onFinish() {
-                    switch (GameModel.getEvent()) {
-                        case "Black":
-                            eventView.setImageResource(R.drawable.eventblack);
-                            break;
-                        case "Green":
-                            eventView.setImageResource(R.drawable.eventgreen);
-                            break;
-                        case "Yellow":
-                            eventView.setImageResource(R.drawable.eventyellow);
-                            break;
-                        case "Blue":
-                            eventView.setImageResource(R.drawable.eventblue);
-                            break;
-                    }
-                }
-
-            }.start();
+        if(GameModel.getNumRound()>1) {
+            switch (GameModel.getEvent()) {
+                case "Black":
+                    eventView.setImageResource(R.drawable.eventblack);
+                    break;
+                case "Green":
+                    eventView.setImageResource(R.drawable.eventgreen);
+                    break;
+                case "Yellow":
+                    eventView.setImageResource(R.drawable.eventyellow);
+                    break;
+                case "Blue":
+                    eventView.setImageResource(R.drawable.eventblue);
+                    break;
+            }
         }
-
-
-
-
-//        if(GameModel.getNumRound()>2) {
-//            switch (GameModel.getEvent()) {
-//                case "Black":
-//                    eventView.setImageResource(R.drawable.eventblack);
-//                    break;
-//                case "Green":
-//                    eventView.setImageResource(R.drawable.eventgreen);
-//                    break;
-//                case "Yellow":
-//                    eventView.setImageResource(R.drawable.eventyellow);
-//                    break;
-//                case "Blue":
-//                    eventView.setImageResource(R.drawable.eventblue);
-//                    break;
-//            }
-//        }
+        super.updateView(v);
         //Launches Barbarian attack page when the 7th black is rolled
         if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
             launchBarbarians(v);
@@ -168,13 +118,10 @@ public class Cities extends Base {
     //Sets the images once the alchemist class closes
     @Override
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
-
-        if(GameModel.getAlchemistRoll()) {
-            try {
-                updateView(this.getWindow().getDecorView().getRootView());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            updateView(this.getWindow().getDecorView().getRootView());
+        } catch (InterruptedException e){
+            e.printStackTrace();
         }
     }
 
