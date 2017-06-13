@@ -12,10 +12,11 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:textStyle="bold"
-        android:hint="Pick your red die"
+        android:hint="Red Die"
         android:layout_marginTop="250dp"
         android:layout_marginLeft="30dp"
-        android:textColorHint="@color/CatanRed"/>
+        android:textColorHint="@color/CatanRed"
+        android:textColor="@color/CatanRed"/>
     <EditText
         android:id="@+id/yellowDie"
         android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/redDie"
         android:textColorHint="@color/CatanGold"
-        android:hint="Pick your yellow die"/>
+        android:textColor="@color/CatanGold"
+        android:hint="Yellow Die"/>
     <Button
         android:id="@+id/roll"
         android:layout_width="wrap_content"
