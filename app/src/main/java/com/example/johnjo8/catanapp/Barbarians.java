@@ -19,6 +19,8 @@ public class Barbarians extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.barbarians_activity);
+        sound = MediaPlayer.create(Barbarians.this,R.raw.swords);
+        sound.start();
 
     }
     public void restore(View v){

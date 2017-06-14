@@ -62,6 +62,7 @@ public class Cities extends Base {
     }
 
     public void updateView(View v) throws InterruptedException{
+        final View view = v;
         turnTimeText.setText("Player " + (GameModel.getNumRolls()%GameModel.getNumPlayers()+1));
         turnTime.setBase(SystemClock.elapsedRealtime());
         turnTime.start();
@@ -72,10 +73,9 @@ public class Cities extends Base {
         super.updateView(v);
         //Displays the event dice
         animationTime = 20;
-
-        //  for(int i = 0;i<100;i++) {
+        int lengthOfAnimation = r.nextInt(700) + 1000;
         if((GameModel.getNumRolls()-1)/GameModel.getNumPlayers()>2) {
-            eventTimer = new Timer(r.nextInt(1500) + 1000, animationTime) {
+            eventTimer = new Timer(lengthOfAnimation, animationTime) {
                 public void onTick(long millisUntilFinished) {
                     currentEvent = r.nextInt(4);
                     while (currentEvent == lastEvent) {
@@ -87,10 +87,25 @@ public class Cities extends Base {
                     eventTimer.changeInterval(animationTime);
                 }
 
+                //Sets the event die to the final image
                 public void onFinish() {
                     switch (GameModel.getEvent()) {
                         case "Black":
                             eventView.setImageResource(R.drawable.eventblack);
+                            //Plays the sound and updates the barbDistance
+                            if (7 - GameModel.getBlackEvent()% 7 == 1) {
+                                barbDistance.setText("The barbarians are 1 space away.");
+                                sound.start();
+                            } else if (GameModel.getBlackEvent() % 7 != 0) {
+                                barbDistance.setText("The barbarians are " + (7 - GameModel.getBlackEvent() % 7) + " spaces away.");
+                                sound.start();
+                            }
+                            //Launches barbarians at the appropriate time
+                            if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
+                                launchBarbarians(view);
+                                GameModel.setCheckForBlack(false);
+                                barbDistance.setText("The barbarians are " + 7 + " spaces away.");
+                            }
                             break;
                         case "Green":
                             eventView.setImageResource(R.drawable.eventgreen);
@@ -106,25 +121,11 @@ public class Cities extends Base {
 
             }.start();
         }
-        if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
-            launchBarbarians(v);
-            GameModel.setCheckForBlack(false);
-            barbDistance.setText("The barbarians are " + 7 + " spaces away.");
-        }
-
-
-
-        //Displays the Barbarian distance
-        if(GameModel.getEvent().equals("Black")){
-            if (7 - GameModel.getBlackEvent()% 7 == 1) {
-                barbDistance.setText("The barbarians are 1 space away.");
-                sound.start();
-            } else if (GameModel.getBlackEvent() % 7 != 0) {
-                barbDistance.setText("The barbarians are " + (7 - GameModel.getBlackEvent() % 7) + " spaces away.");
-                sound.start();
-            }
-
-        }
+//        if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
+//            launchBarbarians(v);
+//            GameModel.setCheckForBlack(false);
+//            barbDistance.setText("The barbarians are " + 7 + " spaces away.");
+//        }
         GameModel.setAlchemistRoll(false);
         if(((GameModel.getNumRolls()+1)/GameModel.getNumPlayers())==4){
             alchemistButton.setClickable(true);
