@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class Cities extends Base {
     private Timer eventTimer;
     private List<Integer> eventImages;
     Random r;
+    MediaPlayer sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class Cities extends Base {
         eventImages.add(R.drawable.eventblack);
         eventImages.add(R.drawable.eventblue);
         eventImages.add(R.drawable.eventgreen);
+        sound = MediaPlayer.create(Cities.this,R.raw.jaws);
         gameTime.start();
 
     }
@@ -136,9 +139,12 @@ public class Cities extends Base {
         if(GameModel.getEvent().equals("Black")){
             if (7 - GameModel.getBlackEvent()% 7 == 1) {
                 barbDistance.setText("The barbarians are 1 space away.");
+                sound.start();
             } else if (GameModel.getBlackEvent() % 7 != 0) {
                 barbDistance.setText("The barbarians are " + (7 - GameModel.getBlackEvent() % 7) + " spaces away.");
+                sound.start();
             }
+
         }
         GameModel.setAlchemistRoll(false);
         if(((GameModel.getNumRolls()+1)/GameModel.getNumPlayers())==4){
