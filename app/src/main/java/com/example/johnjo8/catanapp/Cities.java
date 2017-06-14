@@ -106,27 +106,6 @@ public class Cities extends Base {
 
             }.start();
         }
-
-
-
-
-//        if(GameModel.getNumRound()>2) {
-//            switch (GameModel.getEvent()) {
-//                case "Black":
-//                    eventView.setImageResource(R.drawable.eventblack);
-//                    break;
-//                case "Green":
-//                    eventView.setImageResource(R.drawable.eventgreen);
-//                    break;
-//                case "Yellow":
-//                    eventView.setImageResource(R.drawable.eventyellow);
-//                    break;
-//                case "Blue":
-//                    eventView.setImageResource(R.drawable.eventblue);
-//                    break;
-//            }
-//        }
-        //Launches Barbarian attack page when the 7th black is rolled
         if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
             launchBarbarians(v);
             GameModel.setCheckForBlack(false);
