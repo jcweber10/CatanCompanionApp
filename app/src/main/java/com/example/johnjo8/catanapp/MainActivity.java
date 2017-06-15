@@ -45,6 +45,20 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 
+    @Override
+    public void onUserLeaveHint(){
+        mediaPlayer.pause();
+        super.onUserLeaveHint();
+    }
+
+    @Override
+    public void onRestart(){
+        if(!mediaPlayer.isPlaying()) {
+            mediaPlayer.start();
+        }
+        super.onRestart();
+    }
+
 
 
 }

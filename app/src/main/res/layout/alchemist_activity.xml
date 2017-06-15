@@ -13,8 +13,9 @@
         android:inputType="number"
         android:textStyle="bold"
         android:hint="Red Die"
+        android:layout_alignParentLeft="true"
         android:layout_marginTop="250dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="40dp"
         android:textColorHint="@color/CatanRed"
         android:textColor="@color/CatanRed"/>
     <EditText
@@ -24,8 +25,8 @@
         android:inputType="number"
         android:textStyle="bold"
         android:layout_alignTop="@+id/redDie"
-        android:layout_marginLeft="20dp"
-        android:layout_toRightOf="@+id/redDie"
+        android:layout_marginRight="40dp"
+        android:layout_alignParentRight="true"
         android:textColorHint="@color/CatanGold"
         android:textColor="@color/CatanGold"
         android:hint="Yellow Die"/>
