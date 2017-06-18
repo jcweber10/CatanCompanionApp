@@ -29,6 +29,7 @@ public class Alchemist extends Activity {
         yellowRoll = (EditText) findViewById(R.id.yellowDie);
         roller = (Button) findViewById(R.id.roll);
         roller.setClickable(false);
+        //the textWatcher observes when the text fields change and validates the values
         textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

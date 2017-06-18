@@ -10,23 +10,21 @@
         android:id="@+id/redDie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:inputType="number"
         android:textStyle="bold"
         android:hint="Red Die"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="40dp"
         android:textColorHint="@color/CatanRed"
         android:textColor="@color/CatanRed"/>
     <EditText
         android:id="@+id/yellowDie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/redDie"
+        android:layout_marginTop="60dp"
         android:inputType="number"
         android:textStyle="bold"
-        android:layout_alignTop="@+id/redDie"
-        android:layout_marginRight="40dp"
-        android:layout_alignParentRight="true"
         android:textColorHint="@color/CatanGold"
         android:textColor="@color/CatanGold"
         android:hint="Yellow Die"/>
@@ -35,9 +33,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Roll"
+        android:layout_alignTop="@+id/yellowDie"
         android:layout_marginTop="60dp"
-        android:layout_below="@+id/yellowDie"
+        android:text="Roll"
         android:onClick="returnToCities"/>
 
 </RelativeLayout>

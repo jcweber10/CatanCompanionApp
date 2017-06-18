@@ -121,11 +121,6 @@ public class Cities extends Base {
 
             }.start();
         }
-//        if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
-//            launchBarbarians(v);
-//            GameModel.setCheckForBlack(false);
-//            barbDistance.setText("The barbarians are " + 7 + " spaces away.");
-//        }
         GameModel.setAlchemistRoll(false);
         if(((GameModel.getNumRolls()+1)/GameModel.getNumPlayers())==4){
             alchemistButton.setClickable(true);
