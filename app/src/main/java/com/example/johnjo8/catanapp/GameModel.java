@@ -124,15 +124,6 @@ public class GameModel {
             yellowDie = random.nextInt(6) + 1;
         }
         rollTotal = redDie + yellowDie;
-
-        //Rerolls a 7 in rounds 1 and 2
-        if(numRound>0&&numRound<3) {
-            while (rollTotal == 7) {
-                GameModel.generateRoll();
-                Log.v("debug","A 7 was rolled in round 1 or 2");
-            }
-        }
-
         //Generates the event colors
         int eventNum= random.nextInt(6);
         if(numRound>2) {
@@ -180,6 +171,20 @@ public class GameModel {
             numStats[rollTotal - 2]++;
             turnStringList.add(turnString);
         }
+
+        //Rerolls a 7 in rounds 1 and 2
+        if(numRound>0&&numRound<3) {
+            while (rollTotal == 7) {
+                numStats[5]--;
+                turnStringList.remove(turnStringList.size()-1);
+                GameModel.generateRoll();
+                Log.v("debug","A 7 was rolled in round 1 or 2");
+            }
+        }
+    }
+
+    public static void rollTurn(){
+        generateRoll();
         numRolls++;
         if (numRolls % numPlayers == 0) {
             numRound++;

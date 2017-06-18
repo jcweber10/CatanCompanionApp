@@ -80,7 +80,7 @@ public class Base extends Activity{
         turnTimeText.setText("Player " + (GameModel.getNumRolls()%GameModel.getNumPlayers()+1));
         turnTime.setBase(SystemClock.elapsedRealtime());
         turnTime.start();
-        GameModel.generateRoll();
+        GameModel.rollTurn();
         final List<Integer> redImages = new ArrayList<Integer>();
         redImages.add(R.drawable.red1);
         redImages.add(R.drawable.red2);
