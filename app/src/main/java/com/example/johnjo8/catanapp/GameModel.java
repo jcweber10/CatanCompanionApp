@@ -53,6 +53,12 @@ public class GameModel {
 
     public static int getBlackEvent(){return blackEvent;}
 
+    public static int getYellowEvent(){return yellowEvent;}
+
+    public static int getGreenEvent(){return greenEvent;}
+
+    public static int getBlueEvent(){return blueEvent;}
+
     public static int getNumRound(){
         return numRound;
     }
@@ -107,13 +113,28 @@ public class GameModel {
     public static void populateStats(){
         stats="";
         for(int i=0;i<numStats.length;i++){
-            stats+= (i+2)+": " + numStats[i]+"\n";
+            for(int j=0;j<numStats[i];j++){
+                stats+="|";
+            }
+            stats+="\n";
         }
+
         if(gameType.equals("Cities")){
-            stats+="Black: " + blackEvent + "\n"
-                    + "Yellow: " + yellowEvent + "\n"
-                    + "Blue: " + blueEvent + "\n"
-                    + "Green: " + greenEvent + "\n";
+            for(int i=0;i<blackEvent;i++){
+                stats+="|";
+            }
+            stats+="\n";
+            for(int i=0;i<yellowEvent;i++) {
+                stats += "|";
+            }
+            stats+="\n";
+            for(int i=0;i<greenEvent;i++){
+                stats+="|";
+            }
+            stats+="\n";
+            for(int i=0;i<blueEvent;i++){
+                stats+="|";
+            }
         }
     }
 

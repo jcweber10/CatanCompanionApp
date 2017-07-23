@@ -13,7 +13,7 @@ import org.w3c.dom.Text;
  */
 
 public class Stats extends Activity{
-    private TextView stats;
+    private TextView nums,tallies,amounts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,29 @@ public class Stats extends Activity{
         } else{
             v.setBackgroundColor(Color.parseColor("#008345"));
         }
-        stats = (TextView)findViewById(R.id.stats);
+        int catanGold = getResources().getColor(R.color.CatanGold);
+        int[] amountsArr = GameModel.getNumStats();
+        nums = (TextView)findViewById(R.id.nums);
+        tallies = (TextView)findViewById(R.id.tallies);
+        amounts = (TextView)findViewById(R.id.amount);
         GameModel.populateStats();
-        stats.setText(GameModel.getStats());
-        stats.setTextColor(getResources().getColor(R.color.CatanGold));
+        String numsString="";
+        String amtString="";
+        for(int i=0;i<11;i++){
+            numsString+=((i+2)+":\n");
+            amtString+= amountsArr[i]+"\n";
+        }
+        if(!GameModel.getGameType().equals("Base")){
+            numsString+="Black: "+"\n" + "Yellow: "+"\n" +"Blue: "+"\n" +"Green: ";
+            amtString+=GameModel.getBlackEvent()+"\n"+ GameModel.getYellowEvent()+"\n"+GameModel.getGreenEvent()+"\n"+GameModel.getBlueEvent();
+        }
+        tallies.setTextColor(catanGold);
+        amounts.setTextColor(catanGold);
+        nums.setTextColor(catanGold);
+        nums.setText(numsString);
+        tallies.setText(GameModel.getStats());
+        amounts.setText(amtString);
+
     }
 
     @Override

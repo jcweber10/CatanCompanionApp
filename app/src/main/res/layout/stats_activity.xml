@@ -4,9 +4,23 @@
     android:layout_height="match_parent"
     >
     <TextView
-        android:id="@+id/stats"
+        android:id="@+id/nums"
+        android:textSize="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+        />
+
+    <TextView
+        android:id="@+id/tallies"
+        android:textSize="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="launchStats"/>
-
+        android:layout_toRightOf="@+id/nums"/>
+    <TextView
+        android:id="@+id/amount"
+        android:textSize="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tallies"/>
+"
 </RelativeLayout>

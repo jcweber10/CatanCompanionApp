@@ -33,6 +33,7 @@ public class RollsLog extends Activity {
     private void updateRollsLog(View v){
         for(String turn:GameModel.getTurnStringList()){
             TextView textView = new TextView(this);
+            textView.setTextSize(24);
             textView.setText(turn);
             textView.setTextColor(getResources().getColor(R.color.CatanGold));
             linearLayout.addView(textView);
