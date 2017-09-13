@@ -45,6 +45,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="launchRollsLog"/>
+
+    <Button
+        android:id="@+id/reroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="reroll"
+        android:text="Reroll"/>
     <ImageView
         android:id="@+id/redViewCities"
         android:layout_alignParentLeft="true"

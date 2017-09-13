@@ -14,6 +14,14 @@
         android:onClick="updateView"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reroll"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/stats"
+        android:onClick="reroll"/>
+
 
     <Button
         android:id="@+id/rollsLog"

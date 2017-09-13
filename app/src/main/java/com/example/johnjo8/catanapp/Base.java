@@ -180,9 +180,16 @@ public class Base extends Activity{
 
     }
 
-
+    //Override so the player cannot accidentally end the game
     @Override
     public void onBackPressed(){
+    }
+
+    public void reroll(View v) throws InterruptedException{
+        if(GameModel.getNumRolls()>0){
+            GameModel.reroll();
+            updateView(v);
+        }
     }
 
     public void endGame(View v){

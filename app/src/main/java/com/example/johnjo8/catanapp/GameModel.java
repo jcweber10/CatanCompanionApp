@@ -128,11 +128,11 @@ public class GameModel {
                 stats += "|";
             }
             stats+="\n";
-            for(int i=0;i<greenEvent;i++){
+            for(int i=0;i<blueEvent;i++){
                 stats+="|";
             }
             stats+="\n";
-            for(int i=0;i<blueEvent;i++){
+            for(int i=0;i<greenEvent;i++){
                 stats+="|";
             }
         }
@@ -210,6 +210,34 @@ public class GameModel {
         if (numRolls % numPlayers == 0) {
             numRound++;
         }
+    }
+
+    public static void reroll(){
+        numRolls--;
+        if(numRolls%numPlayers==numPlayers-1){
+            numRound--;
+        }
+        if(numRound>0) {
+            numStats[rollTotal - 2]--;
+            turnStringList.remove(turnStringList.size() - 1);
+        }
+        if(gameType.equals("Cities")&&numRound>2){
+            switch(event){
+                case "Black":
+                    blackEvent--;
+                    break;
+                case "Blue":
+                    blueEvent--;
+                    break;
+                case "Green":
+                    greenEvent--;
+                    break;
+                case "Yellow":
+                    yellowEvent--;
+                    break;
+            }
+        }
+
     }
 
 }

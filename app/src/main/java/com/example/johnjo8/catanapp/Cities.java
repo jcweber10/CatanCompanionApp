@@ -89,17 +89,16 @@ public class Cities extends Base {
 
                 //Sets the event die to the final image
                 public void onFinish() {
+                    //barbDistance.setText("The barbarians are 7 spaces away.");
                     switch (GameModel.getEvent()) {
                         case "Black":
+                            //Sets die to be black
                             eventView.setImageResource(R.drawable.eventblack);
                             //Plays the sound and updates the barbDistance
-                            if (7 - GameModel.getBlackEvent()% 7 == 1) {
-                                barbDistance.setText("The barbarians are 1 space away.");
-                                sound.start();
-                            } else if (GameModel.getBlackEvent() % 7 != 0) {
-                                barbDistance.setText("The barbarians are " + (7 - GameModel.getBlackEvent() % 7) + " spaces away.");
+                            if(GameModel.getBlackEvent()%7!=0){
                                 sound.start();
                             }
+
                             //Launches barbarians at the appropriate time
                             if (GameModel.getBlackEvent() % 7 == 0 && GameModel.getBlackEvent() != 0&&GameModel.getCheckForBlack()){
                                 launchBarbarians(view);
@@ -117,6 +116,12 @@ public class Cities extends Base {
                             eventView.setImageResource(R.drawable.eventblue);
                             break;
                     }
+                    //Sets text for the barbarian distance
+                    if (7 - GameModel.getBlackEvent()% 7 == 1) {
+                        barbDistance.setText("The barbarians are 1 space away.");
+                    } else {//if (GameModel.getBlackEvent() % 7 != 0) {
+                        barbDistance.setText("The barbarians are " + (7 - GameModel.getBlackEvent() % 7) + " spaces away.");
+                    }
                 }
 
             }.start();
@@ -127,11 +132,7 @@ public class Cities extends Base {
         }
     }
 
-    public void roll1000(View v) throws InterruptedException{
-        for(int i=0;i<1000;i++){
-            updateView(v);
-        }
-    }
+
 
     public void launchBarbarians(View v){
         Log.v("TAG", "swapped new activity");
@@ -143,6 +144,14 @@ public class Cities extends Base {
         Log.v("TAG", "swapped new activity");
         Intent i = new Intent(this,Alchemist.class);
         startActivityForResult(i,1);
+    }
+
+    @Override
+    public void reroll(View v) throws InterruptedException{
+        if(GameModel.getNumRolls()>0) {
+            GameModel.reroll();
+            this.updateView(v);
+        }
     }
 
 

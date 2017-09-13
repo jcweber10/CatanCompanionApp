@@ -39,7 +39,7 @@ public class Stats extends Activity{
         }
         if(!GameModel.getGameType().equals("Base")){
             numsString+="Black: "+"\n" + "Yellow: "+"\n" +"Blue: "+"\n" +"Green: ";
-            amtString+=GameModel.getBlackEvent()+"\n"+ GameModel.getYellowEvent()+"\n"+GameModel.getGreenEvent()+"\n"+GameModel.getBlueEvent();
+            amtString+=GameModel.getBlackEvent()+"\n"+ GameModel.getYellowEvent()+"\n"+GameModel.getBlueEvent()+"\n"+GameModel.getGreenEvent();
         }
         tallies.setTextColor(catanGold);
         amounts.setTextColor(catanGold);
