@@ -18,6 +18,7 @@ public class GameModel {
     private static List<String> turnStringList;
     private static boolean checkForBlack,alchemistRoll;
     private static Random random;
+    private static enum eventDie {BLACK,YELLOW,BLUE,GREEN};
 
 
     public GameModel(){

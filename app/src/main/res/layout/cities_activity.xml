@@ -9,7 +9,7 @@
         android:text="End Game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/stats"
+        android:layout_below="@+id/reroll"
         android:layout_centerHorizontal="true"
         android:onClick="endGame" />
 
@@ -51,7 +51,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="reroll"
-        android:text="Reroll"/>
+        android:text="Reroll"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/stats"/>
     <ImageView
         android:id="@+id/redViewCities"
         android:layout_alignParentLeft="true"
