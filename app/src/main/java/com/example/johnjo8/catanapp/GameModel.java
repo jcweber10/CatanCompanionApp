@@ -35,6 +35,9 @@ public class GameModel {
         random= new Random();
     }
 
+    public static int getTurn () {
+        return numRolls % numPlayers;
+    }
 
     public static int getRedDie(){
         return redDie;
@@ -175,15 +178,15 @@ public class GameModel {
         String turnString ="";
         switch (gameType){
             case "Base":
-                turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal;
+                turnString = "Player " + (getTurn()+1)+": " + rollTotal;
                 break;
             case "Cities":
                 if(numRound<3){
-                    turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal;
+                    turnString = "Player " + (getTurn()+1)+": " + rollTotal;
                 } else if(event.equals("Black")){
-                    turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + "Black " + rollTotal;
+                    turnString = "Player " +(getTurn()+1)+": " + "Black " + rollTotal;
                 } else {
-                    turnString = "Player " + ((numRolls % numPlayers) + 1)+": " + rollTotal +
+                    turnString = "Player " + (getTurn() +1) +": " + rollTotal +
                             " with a " + event +" " + redDie;
                 }
         }
