@@ -110,7 +110,7 @@ public class GameModel {
 
     public static void setYellowDie(int yellow){yellowDie = yellow;}
 
-
+    // Generates the tally marks in the stats
     public static void populateStats(){
         stats="";
         for(int i=0;i<numStats.length;i++){
