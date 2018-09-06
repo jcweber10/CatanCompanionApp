@@ -59,6 +59,12 @@ public class MainActivity extends Activity {
         super.onRestart();
     }
 
+    @Override
+    public void onBackPressed(){
+        mediaPlayer.stop();
+        super.onBackPressed();
+    }
+
 
 
 
